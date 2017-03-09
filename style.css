@@ -1,0 +1,40 @@
+
+.container {
+	width: 70%;
+	height: 720px;
+	position: relative;
+	margin-right: auto;
+	margin-left: auto; 
+	overflow: hidden;
+}
+
+.Slides {
+	display: block;
+	max-width:100%;
+	height: auto;
+	position: absolute;
+}
+.leftBtn {
+	position: absolute;
+	padding: 10px 15px;
+    top: 50%;
+    margin-top: 150px;
+   	left: 50%;
+	margin-left: -240px
+}
+.rightBtn {
+	position: absolute;
+	padding: 10px 15px;
+    top: 50%;
+    margin-top: 150px;
+	left: 50%;
+	margin-left: 150px;
+}
+.autoBtn {
+	position: absolute;
+	padding: 10px 35px;
+	top: 50%;
+	margin-top: 150px;
+	left:50%;
+	margin-left: -70px;
+}

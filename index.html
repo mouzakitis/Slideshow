@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SlideShow</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+
+
+<body>
+
+
+<div class="container">
+  <img class="Slides img1" src="img/img_1.jpg" style="opacity: 1;">
+  <img class="Slides img2" src="img/img_2.jpg" style="opacity: 0;">
+  <img class="Slides img3" src="img/img_3.jpg" style="opacity: 0;">
+  <img class="Slides img4" src="img/img_4.jpg" style="opacity: 0;">
+  <img class="Slides img5" src="img/img_5.jpg" style="opacity: 0;">
+  <img class="Slides img6" src="img/img_6.jpg" style="opacity: 0;">
+</div>
+
+  <button class="leftBtn">&#10094;</button>
+  <button class="rightBtn">&#10095;</button>
+  <button class="autoBtn">&#9658;</button>
+  
+<script>
+  var cImg = 1;
+
+$('.leftBtn').on("click", function () {
+        sliderLeft();
+});
+
+$('.rightBtn').on("click", function () {
+        sliderRight();
+});
+
+$('.autoBtn').on("click", function () {
+
+  setInterval(function(){
+    autoPlay();
+  }, 3000);
+
+
+});
+
+  function sliderLeft() {
+        if(cImg <= 1){
+  $('.img' + cImg).animate({'opacity': 0}, 1000);
+  $('.img6').animate({'opacity': 1}, 1000);
+  cImg = 6;
+  }
+  else {
+      $('.img' + cImg).animate({'opacity': 0}, 1000);
+      $('.img' + (cImg - 1)).animate({'opacity': 1}, 1000);
+      cImg --;
+  }
+
+  }
+
+  function sliderRight() {
+      if(cImg >= 6){
+  $('.img' + cImg).animate({'opacity': 0}, 1000);
+  $('.img1').animate({'opacity': 1}, 1000);
+  cImg = 1;
+  }
+  else {
+      $('.img' + cImg).animate({'opacity': 0}, 1000);
+      $('.img' + (cImg + 1)).animate({'opacity': 1}, 1000);
+      cImg ++;
+  }
+}
+
+ function autoPlay() {
+    sliderRight();
+    if (cImg >= 6){
+      autoPlay.stop();
+    }
+
+}
+
+
+</script>
+</body>
+</html>
