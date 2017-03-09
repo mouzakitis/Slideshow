@@ -11,70 +11,87 @@
 <body>
 
 
-<div class="container">
-  <img class="Slides img1" src="img/img_1.jpg" style="opacity: 1;">
-  <img class="Slides img2" src="img/img_2.jpg" style="opacity: 0;">
-  <img class="Slides img3" src="img/img_3.jpg" style="opacity: 0;">
-  <img class="Slides img4" src="img/img_4.jpg" style="opacity: 0;">
-  <img class="Slides img5" src="img/img_5.jpg" style="opacity: 0;">
-  <img class="Slides img6" src="img/img_6.jpg" style="opacity: 0;">
+<div class="container slide_1">
+  <button class="btn btn_next">&#10095;</button>
+  <button class="btn btn_prev">&#10096;</button>
+  <button class="btn btn_play">&#9658;</button>
 
-  <button class="leftBtn">&#10094;</button>
-  <button class="rightBtn">&#10095;</button>
-  <button class="autoBtn">&#9658;</button>
-  
+</div>
+
+<div class="message">
+  <div class="message_container">
+    <p>Press Ok if you want to start over !</p>
+
+    <button class="message_btn btn_ok">OK</button>
+
+    <button class="message_btn btn_stop">Stop</button>
+
+  </div>
 </div>
 
 
-
 <script>
-  var cImg = 1;
+  var imageCounter = 1;
 
-$('.leftBtn').on("click", function () {
-        sliderLeft();
+
+$('.btn_prev').on("click", function () {
+  imageCounter--;
+  changeImage ();
+
 });
 
-$('.rightBtn').on("click", function () {
-        sliderRight();
+$('.btn_next').on("click", function () {
+  imageCounter++;
+  changeImage ();
+
 });
 
-$('.autoBtn').on("click", function () {
-        autoPlay();
+$('.btn_play').on("click", function () {
+    $('.btn_play').css('display','none');
+    autoplay ();
+    
 });
 
-  function sliderLeft() {
-        if(cImg <= 1){
-  $('.img' + cImg).animate({'opacity': 0}, 1000);
-  $('.img6').animate({'opacity': 1}, 1000);
-  cImg = 6;
-  }
-  else {
-      $('.img' + cImg).animate({'opacity': 0}, 1000);
-      $('.img' + (cImg - 1)).animate({'opacity': 1}, 1000);
-      cImg --;
+$('.btn_ok').on("click", function () {
+  $('.btn_play').css('display','none');
+  $('.message').fadeOut();
+  imageCounter= 0; // To start Again from the Slide_1
+  autoplay ();
+
+});
+
+$('.btn_stop').on("click", function () {
+  $('.message').fadeOut();
+  imageCounter= 0; // If the User press the Play Button Again
+
+
+});
+
+  function changeImage () {
+    var containerElement = document.querySelector('.container');
+      if(imageCounter > 6) {
+        imageCounter = 1;
+      }
+      else if (imageCounter < 1) {
+        imageCounter =6;
+      }
+      containerElement.className = "container slide_"  + imageCounter;
   }
 
-  }
 
-  function sliderRight() {
-      if(cImg >= 6){
-  $('.img' + cImg).animate({'opacity': 0}, 1000);
-  $('.img1').animate({'opacity': 1}, 1000);
-  cImg = 1;
-  }
-  else {
-      $('.img' + cImg).animate({'opacity': 0}, 1000);
-      $('.img' + (cImg + 1)).animate({'opacity': 1}, 1000);
-      cImg ++;
-  }
-}
 
- function autoPlay() {
-    var autoplay = setInterval(function () {
-          sliderRight();
-          if (cImg === 6) clearInterval(autoplay);
-    }, 3000);
-
+  function autoplay () {
+    var autoplay = setInterval ( function (){
+      if(imageCounter == 6) {
+        clearInterval(autoplay);
+        $('.btn_play').css('display','block');
+        $('.message').fadeIn();
+      }
+      else {
+        imageCounter++;
+        changeImage ();
+      }
+    },3000);
   }
 
 
