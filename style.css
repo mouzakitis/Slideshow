@@ -17,18 +17,18 @@
 .leftBtn {
 	position: absolute;
 	padding: 10px 15px;
-	top: 10px;
+	bottom: 0;
 	left:0;
 }
 .rightBtn {
 	position: absolute;
 	padding: 10px 15px;
-	top: 10px;
-	left:40px;
+	bottom: 0;
+	right: 0;
 }
 .autoBtn {
 	position: absolute;
 	padding: 10px 32px;
-	top: 50px;
-	left:0;
+	bottom: 0;
+	left:50%
 }

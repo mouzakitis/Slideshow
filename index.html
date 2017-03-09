@@ -18,12 +18,15 @@
   <img class="Slides img4" src="img/img_4.jpg" style="opacity: 0;">
   <img class="Slides img5" src="img/img_5.jpg" style="opacity: 0;">
   <img class="Slides img6" src="img/img_6.jpg" style="opacity: 0;">
-</div>
 
   <button class="leftBtn">&#10094;</button>
   <button class="rightBtn">&#10095;</button>
   <button class="autoBtn">&#9658;</button>
   
+</div>
+
+
+
 <script>
   var cImg = 1;
 
@@ -36,12 +39,7 @@ $('.rightBtn').on("click", function () {
 });
 
 $('.autoBtn').on("click", function () {
-
-  setInterval(function(){
-    autoPlay();
-  }, 3000);
-
-
+        autoPlay();
 });
 
   function sliderLeft() {
@@ -72,12 +70,13 @@ $('.autoBtn').on("click", function () {
 }
 
  function autoPlay() {
-    sliderRight();
-    if (cImg >= 6){
-      autoPlay.stop();
-    }
+    var autoplay = setInterval(function () {
+          sliderRight();
+          if (cImg === 6) clearInterval(autoplay);
+    }, 3000);
 
-}
+  }
+
 
 
 </script>
